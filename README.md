@@ -18,6 +18,10 @@ public class HelloWorld {
 
 3.`java MyFirstJavaClass` to run MyFirstJavaClass
 
+#### extends
+use `super()` to inheritate parent constructions and functions
+use `@Override` if child function needs to override parent function
+
 ### JAVA_HOME (win version)
 
 to tell the operation system the jdk path. For example: `Path %JAVA_HOME%\bin`
@@ -37,6 +41,11 @@ String
 type a = 12
 int b = a
 System.out.println(b) // 12
+```
+
+**two digit
+```
+System.out.printf("%.2f\n", d);
 ```
 
 **force type transfer**
@@ -85,6 +94,7 @@ int rs2 = j++;
 
 if, switch, for, while, do{}while(),
 
+
 ### random
 
 ```
@@ -102,6 +112,9 @@ String[] arr2 = {"Adam","Ben", "Charlie"};
 int arr3[] = {1,2,3};
 
 int[] arr = new int[3] // create an array whose length is 3
+
+print multidimensional Array: Arrays.deepToString()
+
 
 ### input: Scanner
 
@@ -200,3 +213,44 @@ get(int index)
 size()
 
 set(int index,E element)
+
+
+#### input 
+```
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // create Scanner
+        System.out.print("Input your name: "); 
+        String name = scanner.nextLine(); // input string
+        System.out.print("Input your age: "); 
+        int age = scanner.nextInt(); // input integer
+        System.out.printf("Hi, %s, you are %d\n", name, age);
+    }
+}
+```
+
+#### check args
+```
+public class Main {
+    public static void main(String[] args) {
+        for (String arg : args) {
+            if ("-version".equals(arg)) {
+                System.out.println("v 1.0");
+                break;
+            }
+        }
+    }
+}
+```
+
+#### abstract class
+cannot be used with 'new', only for inheritage.  
+```
+abstract class Person {
+    public abstract void run();
+}
+``
+interface is the abstract class with only functions
+class can `implements` more than 1 interface
+
