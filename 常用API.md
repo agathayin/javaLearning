@@ -206,5 +206,75 @@ Period period = Period.between(start,end);
 
 ```
 
+### Array
+```
+int[] arr = {10,20,30,40,50,60};
+System.outprintln(Arrays.toString(arr));
 
+```
+Arrays.toString(arr) 返回数组  
+Arrays.copyOfRange(arr,startIndex,endIndex)  拷贝数组，包前不包后  
+Array.copyOf(arr, length)  拷贝数组  
+Array.setAll(arr, fn) 改数据  
+```
+Array.setAll(arr, new IntToDoubleFn(){
+  @Override
+  public double applyAsDouble(int value){
+    // value = 0 1 2
+    return prices[value] * 2
+  }
+})
+```
+Array.sort(arr) 排序数组  
+```
+// 给对象排序 方法1
+// 对象设定
+public class Student implements Comparable<Student>{
+  private String name;
+  private int age;
+  @override
+  public int compareTo(Student o){
+    return this.age - o.age; // asc
+  }
+}
+//  使用时
+Array.sort(students);
 
+// 给对象排序 方法2
+Arrays.sort(students, new Comparator<Student>(){
+  @Override
+  public int compare(Student o1, Student o2){
+    return Double.compare(o1.getAge(),o2.getAge());
+  }
+})
+
+```
+
+### Lambda (jdk 8后)
+简化函数式接口的匿名内部类。一般有`@FunctionalInterface`。可以不写参数类型，如果只有一个参数参数类型和括号可以省略。只有一行则不用大括号和分号。return也可以省略
+```
+Swimming s = () -> {
+  System.out.println("Swimming")
+}
+s.swim();
+
+Arrays.setAll(prices,value -> prices[value]*0.8);
+Arrays.sort(students, (o1, o2) -> Double.compare(o1.getAge(),o2.getAge()));
+```
+如果前后参数一致时使用`::`
+```
+// 静态引用 类名::静态方法
+// 实例方法引用  类名::实例方法
+Arrays.sort(students, (o1, o2) -> CompareByData.compareByAge(o1,o2));
+=
+Arrays.sort(students, CompareByData::compareByAge)
+
+// 特定类型方法引用 类型::方法
+Array.sort(names, (o1,o2)->o1.compareToIgnoreCase(o2))
+=
+Array.sort(names, String::compareToIgnoreCase)
+
+// 构造器引用  类名:new
+CreateCar cc = (name,price)-> new Car(name, price);
+CreateCar cc = Car::new
+```
