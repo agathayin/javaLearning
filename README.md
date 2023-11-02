@@ -250,7 +250,6 @@ cannot be used with 'new', only for inheritage.
 abstract class Person {
     public abstract void run();
 }
-``
+```
 interface is the abstract class with only functions
 class can `implements` more than 1 interface
-
